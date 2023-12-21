@@ -1,20 +1,20 @@
-package ddwu.com.mobile.project
+package ddwu.com.mobile.project.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ddwu.com.mobile.project.databinding.FragmentDiaryBinding
+import ddwu.com.mobile.project.databinding.FragmentRecordBinding
 
-class DiaryFragment : Fragment() {
-	private lateinit var binding: FragmentDiaryBinding
+class RecordFragment : Fragment() {
+	private lateinit var binding: FragmentRecordBinding
 
-	override fun onCreateView (
+	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-		binding = FragmentDiaryBinding.inflate(layoutInflater)
+		binding = FragmentRecordBinding.inflate(layoutInflater)
 
 		return binding.root
 	}

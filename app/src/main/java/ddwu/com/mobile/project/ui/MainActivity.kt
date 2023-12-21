@@ -1,7 +1,8 @@
-package ddwu.com.mobile.project
+package ddwu.com.mobile.project.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ddwu.com.mobile.project.R
 import ddwu.com.mobile.project.databinding.ActivityMainBinding
 import ddwu.com.mobile.project.databinding.ActivityMainBinding.inflate
 
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 					R.id.navi_search -> {
 						supportFragmentManager
 							.beginTransaction()
-							.replace(R.id.navi_search, SearchFragment())
+							.replace(R.id.fl_container, SearchFragment())
 							.commit()
 					}
 				}

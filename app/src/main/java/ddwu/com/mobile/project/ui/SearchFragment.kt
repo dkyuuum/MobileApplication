@@ -1,4 +1,4 @@
-package ddwu.com.mobile.project
+package ddwu.com.mobile.project.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
