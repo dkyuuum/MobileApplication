@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "ddwu.com.mobile.project"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "ddwu.com.mobile.project"
