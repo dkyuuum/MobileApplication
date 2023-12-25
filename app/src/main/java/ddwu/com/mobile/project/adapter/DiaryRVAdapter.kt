@@ -30,7 +30,6 @@ class DiaryRVAdapter(private val exerciseList: ArrayList<Exercise>) :
 		notifyDataSetChanged()
 	}
 
-	// 뷰홀더를 생성해줘야 할 때 호출되는 함수 => 아이템 뷰 객체를 만들어서 뷰홀더에 던져줍니다.
 	override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
 		val binding: ItemExerciseBinding =
 			ItemExerciseBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -45,7 +44,7 @@ class DiaryRVAdapter(private val exerciseList: ArrayList<Exercise>) :
 			mItemClickListener.onRemoveExercise(
 				position
 			)
-		} //삭제됐을 때
+		}
 	}
 
 	override fun getItemCount(): Int = exerciseList.size

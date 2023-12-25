@@ -11,7 +11,8 @@ class DiaryVPAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 	override fun createFragment(position: Int): Fragment {
 		return when (position) {
 			0 -> ExerciseFragment()
-			else -> FoodFragment()
+			1 -> FoodFragment()
+			else -> throw IllegalArgumentException("Invalid position")
 		}
 	}
 }

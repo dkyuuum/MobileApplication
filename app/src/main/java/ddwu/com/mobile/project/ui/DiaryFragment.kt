@@ -1,11 +1,13 @@
 package ddwu.com.mobile.project.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
+import ddwu.com.mobile.project.R
 import ddwu.com.mobile.project.adapter.DiaryVPAdapter
 import ddwu.com.mobile.project.databinding.FragmentDiaryBinding
 
@@ -19,8 +21,20 @@ class DiaryFragment : Fragment() {
 	): View? {
 		binding = FragmentDiaryBinding.inflate(layoutInflater)
 		initViewPager()
+		initRecordButton()
 
 		return binding.root
+	}
+
+	// 기록하기 Button 설정
+	private fun initRecordButton() {
+		binding.btnRecord.setOnClickListener {
+			val transaction = parentFragmentManager.beginTransaction()
+			transaction
+				.replace(R.id.fl_container, RecordFragment())
+				.addToBackStack(null)  // 백 스택에 추가하여 뒤로 가기 동작이 가능하게 함
+				.commit()
+		}
 	}
 
 	private fun initViewPager() {

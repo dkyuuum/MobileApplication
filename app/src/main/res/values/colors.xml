@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- primary -->
-    <color name="red1">#B22222</color>
+    <color name="red1">#B22222</color> <!-- navi -->
 
     <!-- sub -->
     <color name="red2">#800000</color>
+    <color name="brown">#A52A2A</color> <!-- btn -->
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

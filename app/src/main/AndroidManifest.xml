@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD2QQKdOhk3NULpXyim8HjgjT0ja3IY50E" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
