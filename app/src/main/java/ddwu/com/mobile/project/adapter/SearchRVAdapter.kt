@@ -12,7 +12,7 @@ class SearchRVAdapter(private val searchList: ArrayList<Search>) :
 	RecyclerView.Adapter<SearchRVAdapter.ViewHolder>() {
 
 	interface MyItemClickListener {
-		fun onItemClick(album: Search)
+		fun onItemClick(search: Search)
 		fun onRemoveExercise(position: Int)
 	}
 

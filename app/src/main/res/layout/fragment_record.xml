@@ -46,51 +46,69 @@
             app:layout_constraintStart_toEndOf="@+id/tv_exercise_date" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_exercise_kind_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/font_bold"
+        android:text="운동한 날짜"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:buttonTint="@color/brown"
-            android:fontFamily="@font/font"
-            android:text="주짓수" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font"
-            android:text="수영" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RadioGroup
+        android:id="@+id/et_exercise_kind_content"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/font"
-            android:text="헬스" />
+            android:layout_marginTop="10dp">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:buttonTint="@color/brown"
+                android:fontFamily="@font/font"
+                android:text="주짓수" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:buttonTint="@color/brown"
+                android:fontFamily="@font/font"
+                android:text="수영" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font"
-            android:text="기타" />
+            android:orientation="horizontal">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/font"
+                android:text="헬스" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
+                android:text="기타" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/font_bold"
         android:text="운동 내용"
         android:textSize="18sp" />
@@ -109,7 +127,7 @@
         android:id="@+id/tv_time_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/font_bold"
         android:text="운동 시간"
         android:textSize="18sp" />
@@ -122,7 +140,7 @@
         android:orientation="horizontal">
 
         <Chronometer
-            android:id="@+id/chronometer"
+            android:id="@+id/time_chronometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -161,14 +179,33 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginTop="200dp"
-        android:layout_marginRight="20dp"
-        android:background="@color/brown"
-        android:textColor="@color/white"
-        android:fontFamily="@font/font_bold"
-        android:text="저장" />
+        android:layout_marginTop="150dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@color/brown"
+            android:fontFamily="@font/font_bold"
+            android:text="저장"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="20dp"
+            android:background="@color/brown"
+            android:fontFamily="@font/font_bold"
+            android:text="취소"
+            android:textColor="@color/white" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.appcompat.widget.LinearLayoutCompat>

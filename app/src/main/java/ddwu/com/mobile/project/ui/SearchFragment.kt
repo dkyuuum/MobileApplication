@@ -13,9 +13,7 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import ddwu.com.mobile.project.adapter.DiaryRVAdapter
 import ddwu.com.mobile.project.adapter.SearchRVAdapter
-import ddwu.com.mobile.project.data.Exercise
 import ddwu.com.mobile.project.data.Search
 import ddwu.com.mobile.project.databinding.FragmentSearchBinding
 
@@ -25,7 +23,7 @@ class SearchFragment : Fragment(), OnMapReadyCallback {
 	private lateinit var mapView: MapView
 	private lateinit var googleMap: GoogleMap
 
-	override fun onCreateView (
+	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
@@ -72,17 +70,15 @@ class SearchFragment : Fragment(), OnMapReadyCallback {
 		super.onLowMemory()
 		mapView.onLowMemory()
 	}
+
 	private fun initSearchView() {
-		// init SearchView
 		binding.search.isSubmitButtonEnabled = true
 		binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 			override fun onQueryTextSubmit(query: String?): Boolean {
-				// @TODO
 				return false
 			}
 
 			override fun onQueryTextChange(newText: String?): Boolean {
-				// @TODO
 				return true
 			}
 		})
@@ -93,12 +89,13 @@ class SearchFragment : Fragment(), OnMapReadyCallback {
 
 		itemList.add(Search("워너비짐", "서울시 성북구 월곡동"))
 		itemList.add(Search("백주년 헬스장", "서울시 성북구 하월곡동"))
-		itemList.add(Search( "스포애니", "서울시 금천구 시흥동"))
+		itemList.add(Search("스포애니", "서울시 금천구 시흥동"))
 
 		val searchRVAdapter = SearchRVAdapter(itemList)
 
 		binding.rvSearch.adapter = searchRVAdapter
-		binding.rvSearch.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+		binding.rvSearch.layoutManager =
+			LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
 	}
 }
