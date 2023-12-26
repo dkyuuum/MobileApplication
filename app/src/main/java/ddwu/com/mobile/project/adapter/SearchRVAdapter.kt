@@ -4,12 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ddwu.com.mobile.project.data.Exercise
-import ddwu.com.mobile.project.data.Food
-import ddwu.com.mobile.project.data.Foods
 import ddwu.com.mobile.project.data.Search
-import ddwu.com.mobile.project.databinding.ItemExerciseBinding
-import ddwu.com.mobile.project.databinding.ItemFoodBinding
 import ddwu.com.mobile.project.databinding.ItemSearchBinding
 
 class SearchRVAdapter : RecyclerView.Adapter<SearchRVAdapter.SearchHolder>() {

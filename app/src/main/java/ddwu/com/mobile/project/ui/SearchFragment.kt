@@ -55,9 +55,10 @@ class SearchFragment : Fragment() {
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 		geocoder = Geocoder(requireContext(), Locale.getDefault())
 
+/*
 		val mapFragment: SupportMapFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
 		mapFragment.getMapAsync (mapReadyCallback) // map 정보 가져오기 (Callback 호출)
-
+*/
 		initRecyclerView()
 
 		return binding.root

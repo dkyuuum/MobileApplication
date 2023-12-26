@@ -1,6 +1,6 @@
 package ddwu.com.mobile.project.network
 
-import ddwu.com.mobile.project.data.Food
+import ddwu.com.mobile.project.data.FoodInfo
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,8 +12,8 @@ interface FoodAPIService {
 		@Path("keyId") keyId: String,
 		@Path("serviceId") serviceId: String,
 		@Path("dataType") dataType: String,
-		@Path("startIdx") startIdx: Int,
-		@Path("endIdx") endIdx: Int,
-		@Query("foodName") foodName: String
-	): Call<Food>
+		@Path("startIdx") startIdx: String,
+		@Path("endIdx") endIdx: String,
+		@Query("DESC_KOR") foodName: String
+	): Call<FoodInfo>
 }

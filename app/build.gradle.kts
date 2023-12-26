@@ -68,13 +68,13 @@ dependencies {
 	implementation ("androidx.multidex:multidex:2.0.1")
 
 	//Glide
-	implementation ("com.github.bumptech.glide:glide:4.11.0")
+	implementation ("com.github.bumptech.glide:glide:4.16.0")
 	implementation("androidx.core:core-ktx:1.12.0")
 	annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
 
 	// GSON
 	implementation ("com.google.code.gson:gson:2.9.0")
 
-	implementation ("com.google.android.gms:play-services-maps:17.0.1")
+	implementation ("com.google.android.gms:play-services-maps:18.2.0")
 	implementation ("com.google.maps.android:places-ktx:3.0.0")
 }
