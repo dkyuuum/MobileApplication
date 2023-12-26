@@ -9,40 +9,19 @@ import ddwu.com.mobile.project.databinding.ItemFoodBinding
 
 class FoodRVAdapter : RecyclerView.Adapter<FoodRVAdapter.FoodHolder>() {
 	var food: List<FoodItem>? = null
-
 	override fun getItemCount(): Int {
 		return food?.size ?: 0
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodHolder {
-		val itemBinding =
-			ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		val itemBinding = ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 		return FoodHolder(itemBinding)
 	}
 
 	override fun onBindViewHolder(holder: FoodHolder, position: Int) {
-		val currentFood = food?.get(position)
-		holder.itemBinding.tvFoodName.text = currentFood?.foodName
-		holder.itemBinding.tvFoodCalories.text = currentFood?.kcal
-
-		holder.itemBinding.root.setOnClickListener {
-			clickListener?.onItemClick(it, position)
-		}
+		holder.itemBinding.tvFoodName.text = food?.get(position).toString()
+		holder.itemBinding.tvFoodCalories.text = food?.get(position).toString()
 	}
 
-	class FoodHolder(val itemBinding: ItemFoodBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-		fun bind(foodItem: FoodItem?) {
-			itemBinding.tvFoodName.text = foodItem?.foodName
-			itemBinding.tvFoodCalories.text = foodItem?.kcal
-		}
-	}
-	interface OnItemClickListner {
-		fun onItemClick(view: View, position: Int)
-	}
-
-	var clickListener: OnItemClickListner? = null
-
-	fun setOnItemClickListener(listener: OnItemClickListner) {
-		this.clickListener = listener
-	}
+	class FoodHolder(val itemBinding: ItemFoodBinding) : RecyclerView.ViewHolder(itemBinding.root)
 }

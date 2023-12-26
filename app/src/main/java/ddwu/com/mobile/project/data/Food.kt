@@ -1,6 +1,7 @@
 package ddwu.com.mobile.project.data
 
 import com.google.gson.annotations.SerializedName
+import java.util.Objects
 
 data class FoodInfo(
 	@SerializedName("I2790") val list: FoodDto

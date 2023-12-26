@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">20210783</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="food_api_url">http://openapi.foodsafetykorea.go.kr/api/</string>
+    <string name="food_api_url">http://openapi.foodsafetykorea.go.kr/</string>
     <string name="client_id">0341926a48b74842bf55</string>
     <string name="service_id">I2790</string>
     <string name="data_type">xml</string>

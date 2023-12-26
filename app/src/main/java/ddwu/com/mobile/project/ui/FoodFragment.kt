@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 class FoodFragment : Fragment() {
 	private lateinit var binding: FragmentFoodBinding
 	private val TAG = "FoodFragment"
-	private lateinit var adapter: FoodRVAdapter
+	private var adapter: FoodRVAdapter = FoodRVAdapter()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -32,14 +32,13 @@ class FoodFragment : Fragment() {
 	): View? {
 		binding = FragmentFoodBinding.inflate(layoutInflater)
 
-		adapter = FoodRVAdapter()
 		binding.rvFood.adapter = adapter
 		binding.rvFood.layoutManager = LinearLayoutManager(context)
 
-		val okHttpClient = OkHttpClient.Builder()
-			.connectTimeout(180, TimeUnit.SECONDS)
-			.readTimeout(10, TimeUnit.SECONDS)
-			.writeTimeout(180, TimeUnit.SECONDS)
+		val okHttpClient= OkHttpClient.Builder()
+			.connectTimeout(999999, TimeUnit.SECONDS)
+			.readTimeout(999999, TimeUnit.SECONDS)
+			.writeTimeout(999999, TimeUnit.SECONDS)
 			.build()
 
 		var gson = GsonBuilder().setLenient().create()
@@ -60,6 +59,8 @@ class FoodFragment : Fragment() {
 				override fun onResponse(call: Call<FoodInfo>, response: Response<FoodInfo>) {
 					if (response.isSuccessful) {
 						val root: FoodInfo? = response.body()
+						Log.d("FoodFragment", "$root")
+
 						adapter.food = root?.list?.food
 						adapter.notifyDataSetChanged()
 
@@ -78,8 +79,6 @@ class FoodFragment : Fragment() {
 				resources.getString(R.string.client_id),
 				"I2790",
 				"json",
-				"1",
-				"10",
 				keyword
 			)
 			apiCall.enqueue(apiCallback)
