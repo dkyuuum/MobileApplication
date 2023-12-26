@@ -32,7 +32,7 @@ class DiaryFragment : Fragment() {
 			val transaction = parentFragmentManager.beginTransaction()
 			transaction
 				.replace(R.id.fl_container, RecordFragment())
-				.addToBackStack(null)  // 백 스택에 추가하여 뒤로 가기 동작이 가능하게 함
+				.addToBackStack(null)
 				.commit()
 		}
 	}

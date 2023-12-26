@@ -60,12 +60,12 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_exercise_kind_title"
+                android:id="@+id/tv_exercise_name_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/font_bold"
-                android:text="운동한 날짜"
+                android:text="운동 이름"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +73,7 @@
             <RadioGroup
                 android:id="@+id/et_exercise_kind_content"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" >
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
@@ -81,6 +81,7 @@
                     android:layout_marginTop="10dp">
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
@@ -89,6 +90,7 @@
                         android:text="주짓수" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
@@ -103,6 +105,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
@@ -110,6 +113,7 @@
                         android:text="헬스" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/font"

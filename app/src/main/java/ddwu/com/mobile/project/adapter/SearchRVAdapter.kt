@@ -1,56 +1,48 @@
 package ddwu.com.mobile.project.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ddwu.com.mobile.project.data.Exercise
+import ddwu.com.mobile.project.data.Food
+import ddwu.com.mobile.project.data.Foods
 import ddwu.com.mobile.project.data.Search
 import ddwu.com.mobile.project.databinding.ItemExerciseBinding
+import ddwu.com.mobile.project.databinding.ItemFoodBinding
 import ddwu.com.mobile.project.databinding.ItemSearchBinding
 
-class SearchRVAdapter(private val searchList: ArrayList<Search>) :
-	RecyclerView.Adapter<SearchRVAdapter.ViewHolder>() {
+class SearchRVAdapter : RecyclerView.Adapter<SearchRVAdapter.SearchHolder>() {
+	var search: List<Search>? = null
 
-	interface MyItemClickListener {
-		fun onItemClick(search: Search)
-		fun onRemoveExercise(position: Int)
+	override fun getItemCount(): Int {
+		return search?.size ?: 0
 	}
 
-	private lateinit var mItemClickListener: MyItemClickListener
-
-	fun setMyItemClickListener(itemClickListener: MyItemClickListener) {
-		mItemClickListener = itemClickListener
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHolder {
+		val itemBinding =
+			ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		return SearchHolder(itemBinding)
 	}
 
-	fun addItem(search: Search) {
-		searchList.add(search)
-		notifyDataSetChanged()
-	}
-
-	fun removeItem(position: Int) {
-		searchList.removeAt(position)
-		notifyDataSetChanged()
-	}
-
-	override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-		val binding: ItemSearchBinding =
-			ItemSearchBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-
-		return ViewHolder(binding)
-	}
-
-	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-		holder.bind(searchList[position])
-		holder.itemView.setOnClickListener { mItemClickListener.onItemClick(searchList[position]) }
-		holder.binding.tvSearchName.setOnClickListener {
-			mItemClickListener.onRemoveExercise(
-				position
-			)
+	override fun onBindViewHolder(holder: SearchHolder, position: Int) {
+		holder.itemBinding.tvSearchName.text = search?.get(position).toString()
+		holder.itemBinding.tvSearchAddress.setOnClickListener {
+			clickListener?.onItemClick(it, position)
 		}
 	}
 
-	override fun getItemCount(): Int = searchList.size
+	class SearchHolder(val itemBinding: ItemSearchBinding) : RecyclerView.ViewHolder(itemBinding.root)
 
+	interface OnItemClickListner {
+		fun onItemClick(view: View, position: Int)
+	}
+
+	var clickListener: OnItemClickListner? = null
+
+	fun setOnItemClickListener(listener: OnItemClickListner) {
+		this.clickListener = listener
+	}
 	inner class ViewHolder(val binding: ItemSearchBinding) : RecyclerView.ViewHolder(binding.root) {
 		fun bind(search: Search) {
 			binding.tvSearchName.text = search.name

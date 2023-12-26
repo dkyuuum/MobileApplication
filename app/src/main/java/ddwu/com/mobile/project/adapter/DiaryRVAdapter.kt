@@ -40,10 +40,11 @@ class DiaryRVAdapter(private val exerciseList: ArrayList<Exercise>) :
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		holder.bind(exerciseList[position])
 		holder.itemView.setOnClickListener { mItemClickListener.onItemClick(exerciseList[position]) }
-		holder.binding.tvName.setOnClickListener {
+		holder.binding.itemExercise.setOnLongClickListener {
 			mItemClickListener.onRemoveExercise(
 				position
 			)
+			return@setOnLongClickListener true
 		}
 	}
 
@@ -58,6 +59,8 @@ class DiaryRVAdapter(private val exerciseList: ArrayList<Exercise>) :
 
 			binding.root.setOnLongClickListener {
 				mItemClickListener.onRemoveExercise(adapterPosition)
+				notifyDataSetChanged()
+
 				true
 			}
 		}

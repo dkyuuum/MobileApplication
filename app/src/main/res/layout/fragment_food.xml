@@ -2,6 +2,37 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:focusable="true"
+        android:hint="검색어를 입력하시오"
+        android:padding="10dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_search"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/quantum_ic_search_grey600_24"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/et_search"
+        tools:listitem="@layout/item_food" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

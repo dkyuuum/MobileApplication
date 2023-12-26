@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import ddwu.com.mobile.project.R
@@ -88,15 +89,29 @@ class RecordFragment : Fragment() {
 	private fun recordInfo() {
 		val db = helper.writableDatabase
 		val newRow = ContentValues()
+		val checkedRadioButtonId = binding.etExerciseKindContent.checkedRadioButtonId
 
 		newRow.put(
 			ExerciseDBHelper.COL_exercise_date,
 			binding.tvExerciseDate.text.toString()
 		)
-		newRow.put(
-			ExerciseDBHelper.COL_exercise_name,
-			binding.tvExerciseKindTitle.text.toString()
-		)
+
+		if (checkedRadioButtonId != -1) { // 라디오 버튼이 선택된 경우
+			val selectedRadioButton: RadioButton =
+				binding.etExerciseKindContent.findViewById(checkedRadioButtonId)
+			val selectedText: String = selectedRadioButton.text.toString()
+
+			newRow.put(
+				ExerciseDBHelper.COL_exercise_name,
+				selectedText
+			)
+		} else {
+			newRow.put(
+				ExerciseDBHelper.COL_exercise_name,
+				"선택 안 됨"
+			)
+		}
+
 		newRow.put(
 			ExerciseDBHelper.COL_exercise_content,
 			binding.etExerciseContent.text.toString()
