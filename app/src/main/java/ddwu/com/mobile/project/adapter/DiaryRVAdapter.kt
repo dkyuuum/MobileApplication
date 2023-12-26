@@ -10,7 +10,7 @@ class DiaryRVAdapter(private val exerciseList: ArrayList<Exercise>) :
 	RecyclerView.Adapter<DiaryRVAdapter.ViewHolder>() {
 
 	interface MyItemClickListener {
-		fun onItemClick(album: Exercise)
+		fun onItemClick(exercise: Exercise)
 		fun onRemoveExercise(position: Int)
 	}
 
@@ -55,6 +55,11 @@ class DiaryRVAdapter(private val exerciseList: ArrayList<Exercise>) :
 			binding.tvDate.text = exercise.date
 			binding.tvName.text = exercise.name
 			binding.tvTime.text = exercise.time
+
+			binding.root.setOnLongClickListener {
+				mItemClickListener.onRemoveExercise(adapterPosition)
+				true
+			}
 		}
 	}
 }

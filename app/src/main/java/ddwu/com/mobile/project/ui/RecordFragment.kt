@@ -4,35 +4,39 @@ import android.app.DatePickerDialog
 import android.content.ContentValues
 import android.os.Bundle
 import android.os.SystemClock
-import android.view.KeyEvent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import ddwu.com.mobile.project.R
+import ddwu.com.mobile.project.data.Exercise
 import ddwu.com.mobile.project.databinding.FragmentRecordBinding
 import java.util.Calendar
-import java.util.Timer
 
 class RecordFragment : Fragment() {
 	private lateinit var binding: FragmentRecordBinding
-	lateinit var helper: ExerciseDBHelper
-
-	// 멈춘 시각을 저장하는 속성
-	var pauseTime = 0L
+	private lateinit var helper: ExerciseDBHelper
+	private var pauseTime = 0L
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
 		binding = FragmentRecordBinding.inflate(layoutInflater)
-
 		helper = ExerciseDBHelper(requireContext())
 
 		settingCalendar()
 		settingTimer()
-		saveInfo()
+
+		binding.btnSave.setOnClickListener {
+			recordInfo()
+		}
+
+		binding.btnCancel.setOnClickListener {
+			requireActivity().supportFragmentManager.popBackStack()
+		}
 
 		return binding.root
 	}
@@ -41,7 +45,7 @@ class RecordFragment : Fragment() {
 		binding.btnCalendar.setOnClickListener {
 			val cal = Calendar.getInstance()
 			val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-				binding.tvExerciseDate.text = "${year}/${month}/${day}"
+				binding.tvExerciseDate.text = "${year}/${month+1}/${day}"
 			}
 
 			DatePickerDialog(
@@ -81,27 +85,30 @@ class RecordFragment : Fragment() {
 		}
 	}
 
-	private fun saveInfo() {
-		binding.btnSave.setOnClickListener {
-			val db = helper.writableDatabase
-			val newRow = ContentValues()
+	private fun recordInfo() {
+		val db = helper.writableDatabase
+		val newRow = ContentValues()
 
-			newRow.put(ExerciseDBHelper.COL_exercise_date, binding.tvExerciseDate.text.toString())
-			newRow.put(
-				ExerciseDBHelper.COL_exercise_name,
-				binding.etExerciseContent.text.toString()
-			)
-			newRow.put(
-				ExerciseDBHelper.COL_exercise_content,
-				binding.etExerciseContent.text.toString()
-			)
-			newRow.put(ExerciseDBHelper.COL_exercise_time, binding.timeChronometer.text.toString())
+		newRow.put(
+			ExerciseDBHelper.COL_exercise_date,
+			binding.tvExerciseDate.text.toString()
+		)
+		newRow.put(
+			ExerciseDBHelper.COL_exercise_name,
+			binding.tvExerciseKindTitle.text.toString()
+		)
+		newRow.put(
+			ExerciseDBHelper.COL_exercise_content,
+			binding.etExerciseContent.text.toString()
+		)
+		newRow.put(
+			ExerciseDBHelper.COL_exercise_time,
+			binding.timeChronometer.text.toString()
+		)
 
-			db.insert("exercise_table", null, newRow)
-			helper.close()
-		}
-		binding.btnCancel.setOnClickListener {
-			requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
-		}
+		db.insert("exercise_table", null, newRow)
+		helper.close()
+
+		requireActivity().supportFragmentManager.popBackStack()
 	}
 }

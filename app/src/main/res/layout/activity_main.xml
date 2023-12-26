@@ -21,6 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/red2"
+        app:itemRippleColor="@android:color/transparent"
         app:itemTextAppearanceActive="@style/TextAppearance.AppCompat.Menu"
         app:itemTextAppearanceInactive="@style/NaviTextSize"
         app:itemTextColor="@color/white"
