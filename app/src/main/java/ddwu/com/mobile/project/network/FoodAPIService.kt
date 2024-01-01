@@ -7,7 +7,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface FoodAPIService {
-	@GET("api/{keyId}/{serviceId}/{dataType}/1/100")
+	@GET("api/{keyId}/{serviceId}/{dataType}/1/10")
 	fun searchFoodCalorie(
 		@Path("keyId") keyId: String,
 		@Path("serviceId") serviceId: String,

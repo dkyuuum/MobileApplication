@@ -2,34 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingHorizontal="15dp"
     android:paddingVertical="20dp">
 
     <TextView
         android:id="@+id/tv_food_name"
-        android:layout_width="wrap_content"
+        android:fontFamily="@font/sejong"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@font/sejong"
         android:text="음식 이름" />
 
     <TextView
         android:id="@+id/tv_food_calories"
-        android:layout_width="wrap_content"
+        android:fontFamily="@font/sejong"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@font/sejong"
+        android:layout_marginTop="10dp"
         android:text="음식 칼로리" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_pick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sejong_bold"
-        android:background="@color/brown"
-        android:shadowRadius="3"
-        android:textColor="@color/white"
-        android:text="더하기" />
 
 </LinearLayout>

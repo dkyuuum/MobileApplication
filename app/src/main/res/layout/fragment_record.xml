@@ -65,20 +65,62 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/font_bold"
-                android:text="운동 이름 (종류)"
+                android:text="운동 이름"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_exercise_name_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:fontFamily="@font/font"
-                android:hint="오늘의 운동 종류를 입력하세요!"
-                android:textSize="15sp" />
+            <RadioGroup
+                android:id="@+id/et_exercise_kind_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:buttonTint="@color/brown"
+                        android:fontFamily="@font/font"
+                        android:text="주짓수" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:buttonTint="@color/brown"
+                        android:fontFamily="@font/font"
+                        android:text="수영" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/font"
+                        android:text="헬스" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/exercise_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font"
+                        android:text="기타" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </RadioGroup>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"

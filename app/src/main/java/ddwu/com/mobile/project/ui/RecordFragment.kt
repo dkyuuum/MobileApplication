@@ -46,7 +46,7 @@ class RecordFragment : Fragment() {
 		binding.btnCalendar.setOnClickListener {
 			val cal = Calendar.getInstance()
 			val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-				binding.tvExerciseDate.text = "${year}/${month + 1}/${day}"
+				binding.tvExerciseDate.text = "${year}/${month+1}/${day}"
 			}
 
 			DatePickerDialog(
@@ -89,16 +89,28 @@ class RecordFragment : Fragment() {
 	private fun recordInfo() {
 		val db = helper.writableDatabase
 		val newRow = ContentValues()
+		val checkedRadioButtonId = binding.etExerciseKindContent.checkedRadioButtonId
 
 		newRow.put(
 			ExerciseDBHelper.COL_exercise_date,
 			binding.tvExerciseDate.text.toString()
 		)
 
-		newRow.put(
-			ExerciseDBHelper.COL_exercise_name,
-			binding.etExerciseNameContent.text.toString()
-		)
+		if (checkedRadioButtonId != -1) { // 라디오 버튼이 선택된 경우
+			val selectedRadioButton: RadioButton =
+				binding.etExerciseKindContent.findViewById(checkedRadioButtonId)
+			val selectedText: String = selectedRadioButton.text.toString()
+
+			newRow.put(
+				ExerciseDBHelper.COL_exercise_name,
+				selectedText
+			)
+		} else {
+			newRow.put(
+				ExerciseDBHelper.COL_exercise_name,
+				"선택 안 됨"
+			)
+		}
 
 		newRow.put(
 			ExerciseDBHelper.COL_exercise_content,

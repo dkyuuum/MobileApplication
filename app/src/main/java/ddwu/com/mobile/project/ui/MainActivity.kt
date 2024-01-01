@@ -1,6 +1,5 @@
 package ddwu.com.mobile.project.ui
 
-import SearchFragment
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -23,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 		setContentView(binding.root)
 
 		initBottomNavi()
+		getHashKey()
 	}
 
 	// Bottom Navigation 설정
@@ -48,5 +48,27 @@ class MainActivity : AppCompatActivity() {
 			}
 			selectedItemId = R.id.navi_search
 		}
+	}
+
+	private fun getHashKey() {
+		var packageInfo: PackageInfo? = null
+		try {
+			packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+		} catch (e: PackageManager.NameNotFoundException) {
+			e.printStackTrace()
+		}
+		if (packageInfo == null) Log.e("KeyHash", "KeyHash:null")
+		for (signature in packageInfo!!.signatures) {
+			try {
+				val md: MessageDigest = MessageDigest.getInstance("SHA")
+				md.update(signature.toByteArray())
+				Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+				//ILog.iLogDebug("KeyHash", Base64.getEncoder().encodeToString(md.digest()))
+			} catch (e: NoSuchAlgorithmException) {
+				Log.d("KeyHash", "Unable to get MessageDigest. signature=$signature")
+
+			}
+		}
+
 	}
 }
