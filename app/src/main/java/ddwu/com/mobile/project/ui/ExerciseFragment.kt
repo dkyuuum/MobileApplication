@@ -1,6 +1,7 @@
 package ddwu.com.mobile.project.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.BaseColumns
@@ -25,7 +26,9 @@ class ExerciseFragment : Fragment() {
 	): View? {
 		binding = FragmentExerciseBinding.inflate(layoutInflater)
 		helper = ExerciseDBHelper(requireContext())
+
 		showFoods()
+
 		return binding.root
 	}
 

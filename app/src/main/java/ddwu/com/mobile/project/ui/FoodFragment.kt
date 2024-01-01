@@ -1,16 +1,20 @@
 package ddwu.com.mobile.project.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import ddwu.com.mobile.project.R
 import ddwu.com.mobile.project.adapter.FoodRVAdapter
 import ddwu.com.mobile.project.data.FoodInfo
+import ddwu.com.mobile.project.data.FoodItem
 import ddwu.com.mobile.project.databinding.FragmentFoodBinding
 import ddwu.com.mobile.project.network.FoodAPIService
 import okhttp3.OkHttpClient
@@ -24,7 +28,17 @@ import java.util.concurrent.TimeUnit
 class FoodFragment : Fragment() {
 	private lateinit var binding: FragmentFoodBinding
 	private val TAG = "FoodFragment"
-	private var adapter: FoodRVAdapter = FoodRVAdapter()
+	private lateinit var adapter: FoodRVAdapter
+	private lateinit var loadingLayout: View
+	private var result = 0
+
+	private fun showLoading() {
+		loadingLayout.visibility = View.VISIBLE
+	}
+
+	private fun hideLoading() {
+		loadingLayout.visibility = View.GONE
+	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -32,9 +46,22 @@ class FoodFragment : Fragment() {
 	): View? {
 		binding = FragmentFoodBinding.inflate(layoutInflater)
 
+		initRecyclerView()
+		settingRetrofit()
+
+		loadingLayout = binding.loadingLayout
+
+		hideLoading()
+
+		return binding.root
+	}
+
+	private fun initRecyclerView() {
+		adapter = FoodRVAdapter()
 		binding.rvFood.adapter = adapter
 		binding.rvFood.layoutManager = LinearLayoutManager(context)
-
+	}
+	private fun settingRetrofit() {
 		val okHttpClient= OkHttpClient.Builder()
 			.connectTimeout(999999, TimeUnit.SECONDS)
 			.readTimeout(999999, TimeUnit.SECONDS)
@@ -55,17 +82,37 @@ class FoodFragment : Fragment() {
 			val keyword = binding.etSearch.text.toString()
 			Log.d("FoodFragment", "keyword: $keyword")
 
+			// 로딩 화면
+			showLoading()
+
+			// 키보드 내리기
+			val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+			inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+
 			val apiCallback = object : Callback<FoodInfo> {
 				override fun onResponse(call: Call<FoodInfo>, response: Response<FoodInfo>) {
 					if (response.isSuccessful) {
-						val root: FoodInfo? = response.body()
-						Log.d("FoodFragment", "$root")
+						// 로딩 화면 없앰
+						hideLoading()
 
-						adapter.food = root?.list?.food
-						adapter.notifyDataSetChanged()
+						val root: FoodInfo? = response.body()
+
+						root?.list?.food?.let { foodList ->
+							val filteredFoodList = foodList.filter { it.foodName.contains(keyword) }
+							adapter.food = filteredFoodList
+							adapter.notifyDataSetChanged()
+						}
+						adapter.itemClickListener = object : FoodRVAdapter.OnItemClickListener {
+							override fun onItemClick(foodItem: FoodItem, position: Int) {
+								var selectedCalories = foodItem.kcal.toInt()
+								result += selectedCalories
+
+								Toast.makeText(context, "총 칼로리: $result", Toast.LENGTH_SHORT).show()
+							}
+						}
 
 					} else {
-						Log.d(TAG, "Unsuccessful Response")
+						Log.d(TAG, "검색 결과가 없습니다!")
 						Log.d(TAG, response.errorBody()!!.string())
 					}
 				}
@@ -83,7 +130,5 @@ class FoodFragment : Fragment() {
 			)
 			apiCall.enqueue(apiCallback)
 		}
-
-		return binding.root
 	}
 }

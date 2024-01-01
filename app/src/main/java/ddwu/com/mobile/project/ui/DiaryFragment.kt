@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import ddwu.com.mobile.project.R
 import ddwu.com.mobile.project.adapter.DiaryVPAdapter
@@ -44,5 +45,17 @@ class DiaryFragment : Fragment() {
 		TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
 			tab.text = information[position]
 		}.attach()
+
+		// ExerciseFragment에서만 버튼 띄움
+		binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+			override fun onPageSelected(position: Int) {
+				super.onPageSelected(position)
+				if (position == 1) {
+					binding.btnRecord.visibility = View.GONE
+				} else {
+					binding.btnRecord.visibility = View.VISIBLE
+				}
+			}
+		})
 	}
 }
